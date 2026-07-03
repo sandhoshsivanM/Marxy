@@ -39,13 +39,6 @@
     background: rgba(199, 134, 40, 0.22);
     color: #1f1b19;
   }
-  /* Hide native cursor when custom cursor is active (pointer devices only) */
-  @media (pointer: fine) {
-    html.has-custom-cursor,
-    html.has-custom-cursor * {
-      cursor: none !important;
-    }
-  }
 }
 
 @layer components {

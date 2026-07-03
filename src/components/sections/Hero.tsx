@@ -134,16 +134,6 @@ export function Hero() {
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease, delay: 0.7 }}
-            className="glass absolute bottom-10 left-0 w-52 rounded-3xl p-4 shadow-float"
-          >
-            <div className="text-xs font-medium text-muted">Booked Calls · today</div>
-            <div className="mt-1 text-2xl font-bold text-ink tabular-nums">128</div>
-            <div className="mt-2 text-[0.7rem] text-amber-700">AI qualified · zero manual work</div>
-          </motion.div>
         </div>
       </div>
 

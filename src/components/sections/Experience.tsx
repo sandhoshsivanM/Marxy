@@ -71,7 +71,7 @@ export function Experience() {
       <Hero />
 
       {/* Scroll-story track: tall spacer giving scroll distance + sticky captions */}
-      <div className="relative h-[560vh]">
+      <div className="relative h-[400vh]">
         <div className="sticky top-0 flex h-screen items-end justify-center overflow-hidden pb-16">
           <StoryCaption />
           <SceneProgress />

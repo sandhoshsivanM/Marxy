@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { getState, useAppStore } from "@/lib/store";
 
-const COUNT = 3200;
+const COUNT = 1700;
 const X_START = -8.5;
 const X_END = 7.2;
 

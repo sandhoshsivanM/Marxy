@@ -1,6 +1,9 @@
-import { Suspense, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Suspense, useEffect, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, Lightformer, AdaptiveDpr, Preload } from "@react-three/drei";
+import * as THREE from "three";
+import { getState } from "@/lib/store";
+import { smoothstep, lerp } from "@/lib/utils";
 import { EffectComposer, Bloom, SMAA, Vignette } from "@react-three/postprocessing";
 import { CameraRig } from "./CameraRig";
 import { Funnel } from "./Funnel";
@@ -29,6 +32,30 @@ function StudioEnvironment() {
   );
 }
 
+/** Holds the funnel + particles + chaos icons and composes them for each beat:
+ *  smaller and pushed to the right during the hero so the copy stays clean,
+ *  easing to centred as the story begins. */
+function ExperienceGroup() {
+  const group = useRef<THREE.Group>(null);
+  useFrame((_, delta) => {
+    const { storyProgress } = getState();
+    if (!group.current) return;
+    const hero = 1 - smoothstep(storyProgress / 0.16); // 1 during hero → 0 once story starts
+    const targetX = lerp(0, 5.6, hero);
+    const targetScale = lerp(1, 0.66, hero);
+    group.current.position.x = THREE.MathUtils.damp(group.current.position.x, targetX, 8, delta);
+    const s = THREE.MathUtils.damp(group.current.scale.x, targetScale, 8, delta);
+    group.current.scale.setScalar(s);
+  });
+  return (
+    <group ref={group}>
+      <Funnel />
+      <ParticleStream />
+      <ChaosIcons />
+    </group>
+  );
+}
+
 export function Scene() {
   const setSceneReady = useAppStore((s) => s.setSceneReady);
   useEffect(() => {
@@ -38,26 +65,22 @@ export function Scene() {
 
   return (
     <Canvas
-      camera={{ position: [4.6, 1.2, 11.5], fov: 42, near: 0.1, far: 100 }}
-      dpr={[1, 2]}
+      camera={{ position: [1.2, 0.4, 13.6], fov: 42, near: 0.1, far: 100 }}
+      dpr={[1, 1.6]}
       gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
       style={{ position: "absolute", inset: 0 }}
     >
       <Suspense fallback={null}>
         <StudioEnvironment />
         <CameraRig />
-        <group scale={1}>
-          <Funnel />
-          <ParticleStream />
-          <ChaosIcons />
-        </group>
+        <ExperienceGroup />
         <EffectComposer multisampling={0} enableNormalPass={false}>
           <Bloom
-            intensity={1.15}
-            luminanceThreshold={0.55}
-            luminanceSmoothing={0.3}
+            intensity={0.85}
+            luminanceThreshold={0.62}
+            luminanceSmoothing={0.35}
             mipmapBlur
-            radius={0.7}
+            radius={0.6}
           />
           <SMAA />
           <Vignette eskil={false} offset={0.28} darkness={0.5} />

@@ -2,7 +2,7 @@ import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Html, Line } from "@react-three/drei";
 import * as THREE from "three";
-import { getState } from "@/lib/store";
+import { getState, useAppStore } from "@/lib/store";
 import { integrations } from "@/lib/data/integrations";
 
 const MOUTH = new THREE.Vector3(-8.2, 0, 0);
@@ -35,14 +35,14 @@ export function ChaosIcons() {
 
   const refs = useRef(icons.map(() => ({ el: null as THREE.Group | null })));
 
+  // mount only during the attraction beats (drei <Html> ignores parent .visible,
+  // so we conditionally render rather than toggle visibility)
+  const scene = useAppStore((s) => s.scene);
+  const active = scene >= 1 && scene <= 2;
+
   useFrame(() => {
     const { storyProgress, reducedMotion } = getState();
     if (!group.current) return;
-
-    // fade whole cluster out after it enters the funnel (scene ~3)
-    const alive = storyProgress < 0.5;
-    group.current.visible = alive;
-    if (!alive) return;
 
     const intake = THREE.MathUtils.smoothstep(storyProgress, 0.12, 0.46); // pull-in factor
     const t = performance.now() * 0.001;
@@ -64,23 +64,28 @@ export function ChaosIcons() {
     });
   });
 
+  if (!active) return null;
+
   return (
     <group ref={group}>
       {icons.map((ic, i) => (
         <AttractionLine key={`l-${ic.name}`} target={ic.ref.pos} />
       ))}
-      {icons.map((ic, i) => (
-        <group key={ic.name} ref={(el) => (refs.current[i].el = el)}>
-          <Html center distanceFactor={12} pointerEvents="none" style={{ pointerEvents: "none" }}>
-            <div
-              className="flex h-9 w-9 select-none items-center justify-center rounded-2xl border text-[0.6rem] font-bold shadow-float"
-              style={{ color: ic.hue, borderColor: `${ic.hue}33`, background: "rgba(255,255,255,0.75)" }}
-            >
-              {ic.short}
-            </div>
-          </Html>
-        </group>
-      ))}
+      {icons.map((ic, i) => {
+        const Icon = ic.icon;
+        return (
+          <group key={ic.name} ref={(el) => (refs.current[i].el = el)}>
+            <Html center distanceFactor={11} pointerEvents="none" style={{ pointerEvents: "none" }}>
+              <div
+                className="flex h-11 w-11 select-none items-center justify-center rounded-2xl border border-white/60 bg-white/85 shadow-float backdrop-blur-sm"
+                style={{ color: ic.hue }}
+              >
+                <Icon size={20} />
+              </div>
+            </Html>
+          </group>
+        );
+      })}
     </group>
   );
 }
