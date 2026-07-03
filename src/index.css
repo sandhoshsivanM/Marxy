@@ -1,0 +1,113 @@
+@import "@fontsource/inter/300.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/instrument-serif/400.css";
+@import "@fontsource/instrument-serif/400-italic.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #fdfbf7;
+  --primary: #c78628;
+  --accent: #f6e6c5;
+  --text: #1f1b19;
+  --muted: #6a675f;
+  --glass: rgba(255, 255, 255, 0.42);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --radius: 32px;
+}
+
+@layer base {
+  * {
+    @apply border-black/5;
+  }
+  html {
+    scroll-behavior: auto;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+    overflow-x: hidden;
+    font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+  }
+  ::selection {
+    background: rgba(199, 134, 40, 0.22);
+    color: #1f1b19;
+  }
+  /* Hide native cursor when custom cursor is active (pointer devices only) */
+  @media (pointer: fine) {
+    html.has-custom-cursor,
+    html.has-custom-cursor * {
+      cursor: none !important;
+    }
+  }
+}
+
+@layer components {
+  .glass {
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid var(--glass-border);
+    box-shadow:
+      0 20px 60px -20px rgba(31, 27, 25, 0.18),
+      0 8px 24px -12px rgba(31, 27, 25, 0.1),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+  }
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.62);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+  }
+  .text-gradient-gold {
+    background: linear-gradient(100deg, #e4b85f 0%, #c78628 45%, #7f521a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .hairline {
+    border: 1px solid rgba(31, 27, 25, 0.06);
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .will-transform {
+    will-change: transform;
+  }
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
