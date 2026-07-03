@@ -9,7 +9,7 @@ import { WhoWeHelp } from "@/components/sections/WhoWeHelp";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { HowWeWork } from "@/components/sections/HowWeWork";
 import { Services } from "@/components/sections/Services";
-import { OperatingSystem } from "@/components/sections/OperatingSystem";
+import { GrowthSystem } from "@/components/sections/GrowthSystem";
 import { RealResults } from "@/components/sections/RealResults";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Contact } from "@/components/sections/Contact";
@@ -31,7 +31,7 @@ export default function App() {
         <ProblemSection />
         <HowWeWork />
         <Services />
-        <OperatingSystem />
+        <GrowthSystem />
         <RealResults />
         <Testimonials />
         <Contact />
