@@ -1,26 +1,46 @@
-/** Marketing ecosystem used by the drifting-icon background layer. */
+import type { IconType } from "react-icons";
+import {
+  SiInstagram,
+  SiFacebook,
+  SiLinkedin,
+  SiTiktok,
+  SiGoogle,
+  SiMeta,
+  SiPinterest,
+  SiThreads,
+  SiWhatsapp,
+  SiShopify,
+  SiGmail,
+  SiSalesforce,
+  SiGoogleanalytics,
+  SiGoogleads,
+  SiYoutube,
+  SiGoogletagmanager,
+} from "react-icons/si";
+
+/** Marketing ecosystem used by the drifting-icon background & 3D chaos cluster. */
 export interface Integration {
   name: string;
-  /** short label / abbreviation drawn inside the drifting chip */
-  short: string;
+  icon: IconType;
+  /** authentic brand hue */
   hue: string;
 }
 
 export const integrations: Integration[] = [
-  { name: "Instagram", short: "IG", hue: "#C13584" },
-  { name: "Facebook", short: "Fb", hue: "#1877F2" },
-  { name: "LinkedIn", short: "in", hue: "#0A66C2" },
-  { name: "TikTok", short: "Tk", hue: "#010101" },
-  { name: "Google", short: "G", hue: "#4285F4" },
-  { name: "Meta", short: "M", hue: "#0668E1" },
-  { name: "Pinterest", short: "Pin", hue: "#E60023" },
-  { name: "Threads", short: "@", hue: "#101010" },
-  { name: "WhatsApp", short: "Wa", hue: "#25D366" },
-  { name: "Shopify", short: "Sh", hue: "#95BF47" },
-  { name: "Email", short: "@", hue: "#C78628" },
-  { name: "CRM", short: "CRM", hue: "#6A675F" },
-  { name: "Analytics", short: "An", hue: "#F9AB00" },
-  { name: "GA4", short: "GA4", hue: "#E37400" },
-  { name: "Google Ads", short: "Ads", hue: "#4285F4" },
-  { name: "YouTube", short: "Yt", hue: "#FF0000" },
+  { name: "Instagram", icon: SiInstagram, hue: "#E4405F" },
+  { name: "Facebook", icon: SiFacebook, hue: "#1877F2" },
+  { name: "LinkedIn", icon: SiLinkedin, hue: "#0A66C2" },
+  { name: "TikTok", icon: SiTiktok, hue: "#010101" },
+  { name: "Google", icon: SiGoogle, hue: "#4285F4" },
+  { name: "Meta", icon: SiMeta, hue: "#0668E1" },
+  { name: "Pinterest", icon: SiPinterest, hue: "#E60023" },
+  { name: "Threads", icon: SiThreads, hue: "#101010" },
+  { name: "WhatsApp", icon: SiWhatsapp, hue: "#25D366" },
+  { name: "Shopify", icon: SiShopify, hue: "#7AB55C" },
+  { name: "Email", icon: SiGmail, hue: "#EA4335" },
+  { name: "CRM", icon: SiSalesforce, hue: "#00A1E0" },
+  { name: "Analytics", icon: SiGoogleanalytics, hue: "#E37400" },
+  { name: "GA4", icon: SiGoogletagmanager, hue: "#246FDB" },
+  { name: "Google Ads", icon: SiGoogleads, hue: "#4285F4" },
+  { name: "YouTube", icon: SiYoutube, hue: "#FF0000" },
 ];

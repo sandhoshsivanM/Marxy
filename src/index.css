@@ -102,6 +102,24 @@ html.lenis body {
   overflow: hidden;
 }
 
+/* Compositor-driven background motion (transform/opacity only — never touches the JS main thread) */
+@keyframes bg-drift {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  25% { transform: translate3d(var(--x1), var(--y1), 0) rotate(var(--r1)); }
+  50% { transform: translate3d(var(--x2), var(--y2), 0) rotate(var(--r2)); }
+  75% { transform: translate3d(var(--x3), var(--y3), 0) rotate(var(--r3)); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+}
+@keyframes bg-blob {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(4%, 6%, 0) scale(1.08); }
+  66% { transform: translate3d(-3%, 3%, 0) scale(0.95); }
+}
+@keyframes bg-twinkle {
+  0%, 100% { opacity: 0; transform: translateY(0); }
+  50% { opacity: 0.7; transform: translateY(-22px); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
