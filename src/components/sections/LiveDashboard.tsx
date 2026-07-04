@@ -99,7 +99,7 @@ function MetricCard({ m, i, big }: { m: (typeof metrics)[number]; i: number; big
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.6, delay: i * 0.04, ease }}
       whileHover={{ y: -4 }}
-      className={cn("glass rounded-3xl p-5 shadow-float", big && "p-5")}
+      className={cn("glass rounded-glass p-5 shadow-float", big && "p-5")}
     >
       <div className="flex items-center justify-between">
         <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-500/10 text-amber-700">

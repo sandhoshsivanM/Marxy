@@ -20,7 +20,7 @@ export function HowWeWork() {
           description="Seven stages. Golden particles of momentum travel the whole way — from first audit to compounding growth."
         />
 
-        <div className="relative mt-20">
+        <div className="relative mt-14">
           {/* the track line */}
           <div className="absolute left-0 right-0 top-[2.75rem] hidden h-0.5 lg:block">
             <div className="h-full w-full rounded-full bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 opacity-40" />

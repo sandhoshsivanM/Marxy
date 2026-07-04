@@ -273,7 +273,7 @@ export function RealResults() {
           description="Real engagements, real numbers. These are a handful of the businesses we've helped turn traffic into predictable, compounding revenue."
         />
 
-        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
           {caseStudies.map((study, index) => (
             <CaseStudyCard key={study.id} study={study} index={index} />
           ))}

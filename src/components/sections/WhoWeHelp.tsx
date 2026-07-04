@@ -23,7 +23,7 @@ export function WhoWeHelp() {
           description="The Revenue OS adapts to your industry — same engine, tuned to how your customers actually buy."
         />
 
-        <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-3">
+        <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3">
           {industries.map((ind, i) => {
             const Icon = ind.icon;
             const isActive = active === i;

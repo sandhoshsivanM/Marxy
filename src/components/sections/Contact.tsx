@@ -205,7 +205,7 @@ export function Contact() {
             </div>
 
             <div className="glass rounded-glass p-7 shadow-float">
-              <div className="grid grid-cols-2 gap-5">
+              <div className="grid grid-cols-2 gap-6">
                 {[
                   { v: "150+", l: "Businesses scaled" },
                   { v: "$5M+", l: "Revenue generated" },
@@ -213,7 +213,7 @@ export function Contact() {
                   { v: "24/7", l: "AI systems live" },
                 ].map((s) => (
                   <div key={s.l}>
-                    <div className="text-2xl font-bold text-ink">{s.v}</div>
+                    <div className="text-2xl font-bold tabular-nums text-ink">{s.v}</div>
                     <div className="text-xs text-muted">{s.l}</div>
                   </div>
                 ))}

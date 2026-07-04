@@ -3,7 +3,7 @@ import { CustomCursor } from "@/components/layout/CustomCursor";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Experience } from "@/components/sections/Experience";
+import { Hero } from "@/components/sections/Hero";
 import { LiveDashboard } from "@/components/sections/LiveDashboard";
 import { WhoWeHelp } from "@/components/sections/WhoWeHelp";
 import { ProblemSection } from "@/components/sections/ProblemSection";
@@ -25,7 +25,7 @@ export default function App() {
       <Navbar />
 
       <main id="top" className="relative">
-        <Experience />
+        <Hero />
         <LiveDashboard />
         <WhoWeHelp />
         <ProblemSection />

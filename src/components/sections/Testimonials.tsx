@@ -201,7 +201,7 @@ export function Testimonials() {
 
           {/* Carousel */}
           <div
-            className="relative mt-16"
+            className="relative mt-14"
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
           >

@@ -46,7 +46,7 @@ export function ProblemSection() {
           description="Most businesses don't have a marketing problem — they have a disconnected system. Marksy repairs the whole chain."
         />
 
-        <div ref={ref} className="relative mt-16">
+        <div ref={ref} className="relative mt-14">
           {/* status pill */}
           <div className="mb-8 flex justify-center">
             <motion.button

@@ -1,6 +1,7 @@
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { useCountUp } from "@/hooks/useCountUp";
+import { cn } from "@/lib/utils";
 
 interface AnimatedNumberProps {
   value: number;
@@ -34,7 +35,7 @@ export function AnimatedNumber({
     : current.toFixed(decimals);
 
   return (
-    <span ref={ref} className={className}>
+    <span ref={ref} className={cn("tabular-nums", className)}>
       {prefix}
       {formatted}
       {suffix}
