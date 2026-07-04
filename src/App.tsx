@@ -2,6 +2,7 @@ import { GlobalBackground } from "@/components/background/GlobalBackground";
 import { CustomCursor } from "@/components/layout/CustomCursor";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { Navbar } from "@/components/layout/Navbar";
+import { ProgressRail } from "@/components/layout/ProgressRail";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { LiveDashboard } from "@/components/sections/LiveDashboard";
@@ -23,6 +24,7 @@ export default function App() {
       <GlobalBackground />
       <CustomCursor />
       <Navbar />
+      <ProgressRail />
 
       <main id="top" className="relative">
         <Hero />
