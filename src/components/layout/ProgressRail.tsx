@@ -57,8 +57,30 @@ export function ProgressRail() {
     };
   }, []);
 
+  const activeIndex = Math.max(
+    0,
+    SECTIONS.findIndex((s) => s.id === active),
+  );
+  const activeLabel = SECTIONS[activeIndex].label;
+
   return (
     <>
+      {/* mobile-only current-section indicator (rail is hidden below lg) */}
+      <div
+        className="pointer-events-none fixed bottom-4 left-1/2 z-50 -translate-x-1/2 lg:hidden"
+        aria-hidden
+      >
+        <div className="glass flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs shadow-glow-sm">
+          <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 shadow-glow-sm" />
+          <span className="font-semibold text-ink transition-opacity duration-300">
+            {activeLabel}
+          </span>
+          <span className="tabular-nums text-muted/80">
+            {activeIndex + 1} / {SECTIONS.length}
+          </span>
+        </div>
+      </div>
+
       {/* top scroll-progress bar */}
       <div className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px]" aria-hidden>
         <div
