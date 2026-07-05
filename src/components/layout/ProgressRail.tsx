@@ -118,8 +118,10 @@ export function ProgressRail() {
               </span>
               <span
                 className={cn(
-                  "pointer-events-none whitespace-nowrap rounded-full glass px-2.5 py-1 text-[11px] font-semibold text-ink shadow-glow-sm",
-                  "-translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100",
+                  "pointer-events-none whitespace-nowrap rounded-full glass px-2.5 py-1 text-[11px] font-semibold text-ink shadow-glow-sm transition-all duration-300",
+                  on
+                    ? "translate-x-0 opacity-100"
+                    : "-translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100",
                 )}
               >
                 {s.label}

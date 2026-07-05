@@ -65,11 +65,69 @@ export function ProblemSection() {
 
           {/* journey */}
           <div className="glass rounded-glass p-8 shadow-float sm:p-12">
-            <div className="flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
+            {/* ---- mobile: vertical timeline (leak text always visible, no hover needed) ---- */}
+            <div className="flex flex-col sm:hidden">
+              {STAGES.map((s, i) => {
+                const Icon = s.icon;
+                const last = i === STAGES.length - 1;
+                return (
+                  <div key={s.label} className="flex gap-4">
+                    <div className="flex flex-col items-center">
+                      <motion.div
+                        animate={{
+                          boxShadow: repaired
+                            ? "0 0 22px -6px rgba(199,134,40,0.5)"
+                            : "0 0 20px -6px rgba(225,29,72,0.45)",
+                        }}
+                        transition={{ duration: 0.8 }}
+                        className={cn(
+                          "flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-colors duration-700",
+                          repaired
+                            ? "bg-gradient-to-br from-amber-400 to-amber-700 text-cream"
+                            : "bg-white text-rose-500 ring-1 ring-rose-300/60",
+                        )}
+                      >
+                        <Icon className="h-5 w-5" />
+                      </motion.div>
+                      {!last && (
+                        <div className="relative my-1.5 min-h-[26px] w-0.5 flex-1 overflow-hidden rounded-full bg-black/5">
+                          <motion.div
+                            className="absolute inset-x-0 top-0 rounded-full"
+                            initial={false}
+                            animate={{
+                              height: repaired ? "100%" : "40%",
+                              backgroundColor: repaired ? "#C78628" : "#e11d48",
+                            }}
+                            transition={{ duration: 0.9, delay: repaired ? i * 0.12 : 0, ease: [0.22, 1, 0.36, 1] }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                    <div className={cn("min-w-0", last ? "pb-0" : "pb-6")}>
+                      <div className="text-sm font-semibold text-ink">{s.label}</div>
+                      <div className="mt-1 text-xs leading-relaxed text-muted">
+                        <span
+                          className={cn(
+                            "font-semibold",
+                            repaired ? "text-amber-700" : "text-rose-600",
+                          )}
+                        >
+                          {repaired ? "Reconnected — " : "Leak — "}
+                        </span>
+                        {s.issue}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* ---- desktop: horizontal chain (hover reveals the leak) ---- */}
+            <div className="hidden items-center justify-between gap-2 sm:flex">
               {STAGES.map((s, i) => {
                 const Icon = s.icon;
                 return (
-                  <div key={s.label} className="flex flex-1 items-center gap-4 sm:flex-col sm:gap-3">
+                  <div key={s.label} className="flex flex-1 flex-col items-center gap-3">
                     {/* node */}
                     <motion.div
                       onMouseEnter={() => setHovered(i)}
@@ -106,7 +164,7 @@ export function ProblemSection() {
                         </motion.div>
                       )}
 
-                      <div className="mt-2 text-center text-sm font-semibold text-ink sm:mt-3">{s.label}</div>
+                      <div className="mt-3 text-center text-sm font-semibold text-ink">{s.label}</div>
                     </motion.div>
 
                     {/* connector */}
