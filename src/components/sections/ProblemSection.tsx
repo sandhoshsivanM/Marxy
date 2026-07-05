@@ -48,23 +48,39 @@ export function ProblemSection() {
 
         <div ref={ref} className="relative mt-14">
           {/* status pill */}
-          <div className="mb-8 flex justify-center">
+          <div className="mb-8 flex justify-center px-2">
             <motion.button
               type="button"
               onClick={() => setRepaired((v) => !v)}
               className={cn(
-                "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-500",
+                "inline-flex max-w-full items-center justify-center gap-2 rounded-full px-4 py-2 text-center text-xs font-medium transition-colors duration-500 sm:text-sm",
                 repaired ? "bg-amber-500/10 text-amber-700" : "bg-rose-500/10 text-rose-600",
               )}
               data-cursor="hover"
             >
-              {repaired ? <Sparkles className="h-4 w-4" /> : <AlertTriangle className="h-4 w-4" />}
-              {repaired ? "System repaired — revenue flows end to end" : "System broken — hover a stage to see the leak"}
+              {repaired ? (
+                <Sparkles className="h-4 w-4 shrink-0" />
+              ) : (
+                <AlertTriangle className="h-4 w-4 shrink-0" />
+              )}
+              <span>
+                {repaired ? (
+                  <>
+                    System repaired — <span className="hidden sm:inline">revenue flows end to end</span>
+                    <span className="sm:hidden">revenue flows</span>
+                  </>
+                ) : (
+                  <>
+                    System broken — <span className="hidden sm:inline">hover a stage to see the leak</span>
+                    <span className="sm:hidden">tap to repair</span>
+                  </>
+                )}
+              </span>
             </motion.button>
           </div>
 
           {/* journey */}
-          <div className="glass rounded-glass p-8 shadow-float sm:p-12">
+          <div className="glass rounded-glass p-6 shadow-float sm:p-12">
             {/* ---- mobile: vertical timeline (leak text always visible, no hover needed) ---- */}
             <div className="flex flex-col sm:hidden">
               {STAGES.map((s, i) => {
